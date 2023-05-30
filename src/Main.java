@@ -18,7 +18,10 @@ public class Main {
         int[][] insertMatrix = GetRandomMatrix(sizes);
 
         System.out.println("Начальные массивы:");
+
+        System.out.println("Первый массив:");
         PrintMatrix(selectMatrix);
+        System.out.println("Второй массив:");
         PrintMatrix(insertMatrix);
 
 //массивы в которых мы храним число перестановок и сравнений
@@ -33,7 +36,9 @@ public class Main {
 
        //печатаем отсортирвоанные массивчеки
         System.out.println("Отсортированные массивы:");
+        System.out.println("Первый массив:");
         PrintMatrix(selectMatrix);
+        System.out.println("Второй массив:");
         PrintMatrix(insertMatrix);
 
 
@@ -124,8 +129,8 @@ public class Main {
 
     private static XYSeriesCollection GetXYSeriesCollection(float[][] swapResultSelect, float[][] second) {
         XYSeriesCollection dataset = new XYSeriesCollection();
-        XYSeries series = new XYSeries("SelectSort");
-        XYSeries series2 = new XYSeries("InsertSort");
+        XYSeries series = new XYSeries("Сортировка выбором");
+        XYSeries series2 = new XYSeries("Сортировка вставками");
 
         for (int i = 0; i < swapResultSelect.length; i++) {
             for (int j = 0; j < swapResultSelect[j].length - 1; j++) {
