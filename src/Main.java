@@ -18,28 +18,28 @@ public class Main {
         int[][] insertMatrix = GetRandomMatrix(sizes);
 
         System.out.println("Начальные массивы:");
-
-        System.out.println("Первый массив:");
         PrintMatrix(selectMatrix);
-        System.out.println("Второй массив:");
-        PrintMatrix(insertMatrix);
+//        System.out.println("Второй массив:");
+//        PrintMatrix(insertMatrix);
 
 //массивы в которых мы храним число перестановок и сравнений
         //абсолютные значения скольок было сделлано перестановок и сравнений
+
         int[][] swapAndCompareResultInsertAbsolute = SortMatrix(insertMatrix,"SortInsert");
         int[][] swapAndCompareResultSelectAbsolute = SortMatrix(selectMatrix,"SortSelect");
 
         System.out.println("Количество перестановок и сравнений:");
+        System.out.println("Колво перестановок и сравнений в массиве Вставками:");
         PrintMatrix(swapAndCompareResultInsertAbsolute);
+        System.out.println("Колво перестановок и сравнений в массиве Выбором:");
         PrintMatrix(swapAndCompareResultSelectAbsolute);
 
 
-       //печатаем отсортирвоанные массивчеки
+        //печатаем отсортирвоанные массивчеки
         System.out.println("Отсортированные массивы:");
-        System.out.println("Первый массив:");
         PrintMatrix(selectMatrix);
-        System.out.println("Второй массив:");
-        PrintMatrix(insertMatrix);
+//        System.out.println("Второй массив:");
+//        PrintMatrix(insertMatrix);
 
 
         float[][] swapAndCompareResultSelectNORMAL = GetSwapAndCompareResultNormal(swapAndCompareResultSelectAbsolute,sizes);
