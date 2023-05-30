@@ -14,37 +14,40 @@ public class Main {
 
         int[] sizes = new int[]{37, 84, 189, 424, 954, 2152, 4865};
 
-        int[][] bubbleMatrix = GetRandomMatrix(sizes);
+        int[][] selectMatrix = GetRandomMatrix(sizes);
         int[][] insertMatrix = GetRandomMatrix(sizes);
 
         System.out.println("Начальные массивы:");
-        PrintMatrix(bubbleMatrix);
+        PrintMatrix(selectMatrix);
         PrintMatrix(insertMatrix);
 
 //массивы в которых мы храним число перестановок и сравнений
-        //абсолютные значения скольок бьыло сделлано перестановок и сравнений
+        //абсолютные значения скольок было сделлано перестановок и сравнений
         int[][] swapAndCompareResultInsertAbsolute = SortMatrix(insertMatrix,"SortInsert");
-        int[][] swapAndCompareResultBubbleAbsolute = SortMatrix(bubbleMatrix,"SortBubble");
+        int[][] swapAndCompareResultSelectAbsolute = SortMatrix(selectMatrix,"SortSelect");
+
+        System.out.println("Количество перестановок и сравнений:");
+        PrintMatrix(swapAndCompareResultInsertAbsolute);
+        PrintMatrix(swapAndCompareResultSelectAbsolute);
+
 
        //печатаем отсортирвоанные массивчеки
         System.out.println("Отсортированные массивы:");
-        PrintMatrix(bubbleMatrix);
+        PrintMatrix(selectMatrix);
         PrintMatrix(insertMatrix);
 
 
-        float[][] swapAndCompareResultBubbleNORMAL = GetSwapAndCompareResultNormal(swapAndCompareResultBubbleAbsolute,sizes);
-        float[][] swapAndCompareResultBubbleLOG = GetSwapAndCompareResultLog(swapAndCompareResultBubbleAbsolute);
+        float[][] swapAndCompareResultSelectNORMAL = GetSwapAndCompareResultNormal(swapAndCompareResultSelectAbsolute,sizes);
+        float[][] swapAndCompareResultSelectLOG = GetSwapAndCompareResultLog(swapAndCompareResultSelectAbsolute);
 
 
-        //
         float[][] swapAndCompareResultInsertNORMAL = GetSwapAndCompareResultNormal(swapAndCompareResultInsertAbsolute,sizes);
         float[][] swapAndCompareResultInsertLOG = GetSwapAndCompareResultLog(swapAndCompareResultInsertAbsolute);
 
-
         //дальше рисовалка
-        XYSeriesCollection dataset1 = GetXYSeriesCollection(swapAndCompareResultBubbleAbsolute,swapAndCompareResultInsertAbsolute);
-        XYSeriesCollection dataset2 = GetXYSeriesCollection(swapAndCompareResultBubbleNORMAL,swapAndCompareResultInsertNORMAL);
-        XYSeriesCollection dataset3 = GetXYSeriesCollection(swapAndCompareResultBubbleLOG,swapAndCompareResultInsertLOG);
+        XYSeriesCollection dataset1 = GetXYSeriesCollection(swapAndCompareResultSelectAbsolute,swapAndCompareResultInsertAbsolute);
+        XYSeriesCollection dataset2 = GetXYSeriesCollection(swapAndCompareResultSelectNORMAL,swapAndCompareResultInsertNORMAL);
+        XYSeriesCollection dataset3 = GetXYSeriesCollection(swapAndCompareResultSelectLOG,swapAndCompareResultInsertLOG);
 
         GetJFrame(dataset1);
         GetJFrame(dataset2);
@@ -119,14 +122,14 @@ public class Main {
 
 
 
-    private static XYSeriesCollection GetXYSeriesCollection(float[][] swapResultBubble, float[][] second) {
+    private static XYSeriesCollection GetXYSeriesCollection(float[][] swapResultSelect, float[][] second) {
         XYSeriesCollection dataset = new XYSeriesCollection();
-        XYSeries series = new XYSeries("BubbleSort");
-        XYSeries series2 = new XYSeries("second");
+        XYSeries series = new XYSeries("SelectSort");
+        XYSeries series2 = new XYSeries("InsertSort");
 
-        for (int i = 0; i < swapResultBubble.length; i++) {
-            for (int j = 0; j < swapResultBubble[j].length - 1; j++) {
-                series.add(swapResultBubble[i][j], swapResultBubble[i][j + 1]);
+        for (int i = 0; i < swapResultSelect.length; i++) {
+            for (int j = 0; j < swapResultSelect[j].length - 1; j++) {
+                series.add(swapResultSelect[i][j], swapResultSelect[i][j + 1]);
                 series2.add(second[i][j], second[i][j + 1]);
             }
         }
@@ -134,14 +137,14 @@ public class Main {
         dataset.addSeries(series2);
         return dataset;
     }
-    private static XYSeriesCollection GetXYSeriesCollection(int[][] bubble, int[][] insert) {
+    private static XYSeriesCollection GetXYSeriesCollection(int[][] select, int[][] insert) {
         XYSeriesCollection dataset = new XYSeriesCollection();
-        XYSeries series = new XYSeries("Пузырьковая сортировка");
-        XYSeries series2 = new XYSeries("second");
+        XYSeries series = new XYSeries("Сортировка выбором");
+        XYSeries series2 = new XYSeries("Сортировка вставками");
 
-        for (int i = 0; i < bubble.length; i++) {
-            for (int j = 0; j < bubble[j].length - 1; j++) {
-                series.add(bubble[i][j], bubble[i][j + 1]);
+        for (int i = 0; i < select.length; i++) {
+            for (int j = 0; j < select[j].length - 1; j++) {
+                series.add(select[i][j], select[i][j + 1]);
                 series2.add(insert[i][j], insert[i][j + 1]);
             }
         }
